@@ -4,18 +4,90 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Assets/css/style.css" />
+    <link rel="shortcut icon" href="../../Assets/images/Logo-Cor-Nova.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../Assets/css/adminlte/adminlte.min.css" />
+
+    <title>Ocorrências</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body class="altera-fonte">
     <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="../../Assets/images/Logo-Cor-Nova.png" alt="Residaz Logo" class="brand-image" style="opacity: .8">
+                <span class="brand-text font-weight">Residaz</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="../../Assets/images/admin.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Luis Fabiano</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <!-- Add icons to the links using the .nav-icon class
+                       with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="Ocorrencia.aspx" class="nav-link">
+                                <i class="fa-solid fa-bell" style="color: #00b3ff;"></i>
+                                <p>
+                                    Ocorrências
+                                </p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Historico.aspx" class="nav-link">
+                                <i class="fa-solid fa-book-open" style="color: #7faaf5;"></i>
+                                <p>Histórico</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+        </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="../../Assets/plugins/jquery/jquery.min.js"></script>
+        <script src="../../Assets/js/adminlte/adminlte.min.js"></script>
+        <script src="https://kit.fontawesome.com/6cc992ba61.js" crossorigin="anonymous"></script>
+
+        <asp:ContentPlaceHolder ID="body" runat="server">
         </asp:ContentPlaceHolder>
-    </div>
     </form>
 </body>
 </html>
