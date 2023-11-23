@@ -3,11 +3,39 @@
     padding: 0;
 }
 
+.background {
+    background: linear-gradient(180deg, #0077B6 0%, #00B4B8 100%);
+}
+
 body {
     background: linear-gradient(180deg, #0077B6 0%, #00B4B8 100%);
 }
 
 @font-face {
     font-family: "Lato";
-    src: url('../fonts/Lato-Regular.ttf') format('truetype');
+    src: url("../font/Lato-Light.ttf");
+}
+
+.altera-fonte {
+    font-family: "Lato";
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.content-wrapper {
+    background: none;
+    min-height: 100vh;
+}
+
+.altera-fonte-titulo {
+    font-style: normal;
+    font-family: "Lato";
+    color: #00B4B8;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.novaOcorrencia {
+    width: 150px;
+    height: 40px;
 }
