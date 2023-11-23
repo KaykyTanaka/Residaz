@@ -1,0 +1,13 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(180deg, #0077B6 0%, #00B4B8 100%);
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato-Regular.ttf') format('truetype');
+}
