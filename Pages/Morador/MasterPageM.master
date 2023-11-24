@@ -23,7 +23,7 @@
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="../../Assets/images/Logo-Cor-Nova.png" alt="Residaz Logo" class="brand-image" style="opacity: .8">
-                <span class="brand-text font-weight">Residaz</span>
+                <span class="brand-text text-decoration-none">Residaz</span>
             </a>
 
             <!-- Sidebar -->
@@ -64,7 +64,7 @@
             </div>
         </aside>
 
-
+        <script src="../../Assets/js/modal.js"></script>
         <script src="../../Assets/plugins/jquery/jquery.min.js"></script>
         <script src="../../Assets/js/adminlte/adminlte.min.js"></script>
         <script src="https://kit.fontawesome.com/6cc992ba61.js" crossorigin="anonymous"></script>
