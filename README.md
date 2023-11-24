@@ -1,2 +1,2 @@
 # Residaz
-Projeto Interdisciplinar - Residaz
+Projeto Interdisciplinar
