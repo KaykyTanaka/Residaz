@@ -12,34 +12,34 @@
                     <h4 class="mt-3 altera-fonte-titulo">Histórico de Ocorrências</h4>
                 </div>
 
-                <div class="col-4 mt-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title altera-fonte-titulo font-weight-bold">Iluminação</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                <!-- Buttons, labels, and many other things can be placed here! -->
-                                <!-- Here is a label for example -->
+
+
+
+                <asp:Repeater ID="lblCard" runat="server">
+                    <ItemTemplate>
+                        <div class="col-4 mt-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title altera-fonte-titulo font-weight-bold"><%# Eval("oco_titulo") %></h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body descricao">
+                                    <p><%# Eval("oco_descricao") %></p>
+                                </div>
+                                <div class="card-footer text-success">
+                                    <p><%# Eval("oco_status") %></p>
+                                </div>
                             </div>
-                            <!-- /.card-tools -->
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body descricao">
-                            Gostaria de relatar um problema de iluminaçãoo no meu apartamento (144)
-                            que precisa de atenção. Algumas lampadas estão piscando constantemente e
-                            outras simplesmente não acendem.
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer text-success">
-                            Solucionado
-                        </div>
-                        <!-- /.card-footer -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <!-- /.card-footer -->
+                    </ItemTemplate>
+                </asp:Repeater>
+
+
+
             </div>
-            <!-- /.card -->
         </div>
     </div>
 </asp:Content>
