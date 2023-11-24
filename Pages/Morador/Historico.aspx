@@ -37,8 +37,6 @@
                     </div>
                     <!-- /.card -->
                 </div>
-
-
                 <!-- /.card-footer -->
             </div>
             <!-- /.card -->
