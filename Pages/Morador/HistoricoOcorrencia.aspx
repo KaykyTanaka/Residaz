@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Morador/MasterPageM.master" AutoEventWireup="true" CodeFile="Historico.aspx.cs" Inherits="Pages_Morador_Historico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Morador/MasterPageM.master" AutoEventWireup="true" CodeFile="HistoricoOcorrencia.aspx.cs" Inherits="Pages_Morador_Historico" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -7,9 +7,9 @@
 
     <div class="content-wrapper">
         <div class="container">
-            <div class="row">
+            <div class="row p-3">
                 <div class="col-12">
-                    <h4 class="mt-3 altera-fonte-titulo">Histórico de Ocorrências</h4>
+                    <h4 class="mt-3 altera-fonte-titulo">Ocorrências</h4>
                 </div>
 
 
@@ -29,16 +29,13 @@
                                 <div class="card-body descricao">
                                     <p><%# Eval("oco_descricao") %></p>
                                 </div>
-                                <div class="card-footer text-success">
-                                    <p><%# Eval("oco_status") %></p>
-                                </div>
+
+                                <asp:Label ID="lblStatus" runat="server" CssClass="card-footer" />
+
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
-
-
             </div>
         </div>
     </div>

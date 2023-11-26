@@ -44,16 +44,16 @@
                         <!-- Add icons to the links using the .nav-icon class
                        with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="Ocorrencia.aspx" class="nav-link">
+                            <a href="RegistrarOcorrencia.aspx" class="nav-link">
                                 <i class="fa-solid fa-bell" style="color: #00b3ff;"></i>
                                 <p>
-                                    Ocorrências
+                                    Nova Ocorrência
                                 </p>
 
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="Historico.aspx" class="nav-link">
+                            <a href="HistoricoOcorrencia.aspx" class="nav-link">
                                 <i class="fa-solid fa-book-open" style="color: #7faaf5;"></i>
                                 <p>Histórico</p>
                             </a>

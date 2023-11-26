@@ -19,11 +19,13 @@ public partial class Pages_Morador_Historico : System.Web.UI.Page
     void LoadCard()
     {
         DataSet ds = OcorrenciasBD.SelectOcorrencias(13); //substituir o numero pelo codigo do morador que estará na session;
-        if (ds != null ) {
+
+        if (ds != null)
+        {
             lblCard.DataSource = ds;
             lblCard.DataBind();
         }
     }
 
-
+   
 }
