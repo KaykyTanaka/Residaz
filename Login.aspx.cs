@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Login : System.Web.UI.Page
+public partial class login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void btnEntrar_Click(object sender, EventArgs e)
@@ -23,11 +23,9 @@ public partial class Login : System.Web.UI.Page
             if (usuario != null)
             {
                 Session["USUARIO"] = usuario;
-                Response.Redirect("Pages/Síndico/Home.aspx");
-            }
-            else
-            {
-                lblErr.Text = "Email ou senha invalidos! ";
+                Usuario temp = (Usuario) Session["USUARIO"];
+                Usuario verifUsu = UsuariosBD.TipoLogin( Convert.ToInt32(temp.id.ToString()) );
+                Response.Redirect(verifUsu.redirecionar);
             }
 
         }
@@ -35,5 +33,8 @@ public partial class Login : System.Web.UI.Page
         {
             lblErr.Text = "Preencha os campos corretamente! ";
         }
+
+
+
     }
 }
