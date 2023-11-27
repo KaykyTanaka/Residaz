@@ -65,6 +65,8 @@ public class Funcoes
         else return 0;
     }
 
+
+
     public static void FillGrid(GridView gdv, DataSet ds, Label lbl)
     {
         if (ds != null)
