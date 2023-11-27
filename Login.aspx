@@ -10,13 +10,14 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+
+    <link href="Assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/styleLogin.css">
+    <link href="Assets/css/adminlte/adminlte.min.css" rel="stylesheet" />
+    <link href="Assets/css/style.css" rel="stylesheet" />
+    <link href="Assets/css/styleLogin.css" rel="stylesheet" />
 </head>
 
 <body class="hold-transition login-page">
@@ -49,10 +50,10 @@
                         <label class="form-check-label lembrar" for="CheckUsuario">Lembrar usuário</label>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                    <asp:LinkButton ID="btnEntrar" runat="server" CssClass="btn btn-primary entrar"
-                        OnClick="btnEntrar_Click"> ENTRAR <i class="fa fa-arrow-circle-o-right"> </i>
-                    </asp:LinkButton>
-                </div>
+                        <asp:LinkButton ID="btnEntrar" runat="server" CssClass="btn btn-primary entrar"
+                            OnClick="btnEntrar_Click"> ENTRAR <i class="fa fa-arrow-circle-o-right"> </i>
+                        </asp:LinkButton>
+                    </div>
                 </form>
             </div>
         </div>

@@ -81,7 +81,7 @@ public class Funcoes
             }
             else
             {
-                // lbl.Text = "Não há registros!";
+                //lbl.Text = "Não há registros!";
             }
         }
         else

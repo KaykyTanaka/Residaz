@@ -26,26 +26,30 @@ public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
     {
         DataSet ds = OcorrenciasBD.SelectAll();
         Funcoes.FillGrid(gdvOcorrencias, ds, lblMsg);
-        lblLinhas.Text = "";
-        LoadManualGrid(ds);
     }
 
-    void LoadManualGrid(DataSet ds)
-    {
-        int qtd = Funcoes.CountDataSet(ds);
-        if (qtd > 0)
-        {
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                lblLinhas.Text += "<tr> <td>" + dr["oco_id"].ToString() + "</td>  <td>" + dr["oco_titulo"] + "</td> <td>" + dr["oco_categoria"] + "</td> <td>" + dr["oco_status"] + "</td></tr>";
-            }
-
-        }
-    }
 
     protected void gdvOcorrencias_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            int statusValue;
+            if (int.TryParse(e.Row.Cells[3].Text, out statusValue))
+            {
+                switch (statusValue)
+                {
+                    case 2:
+                        e.Row.Cells[3].Text = "Solucionado";
+                        break;
+                    case 1:
+                        e.Row.Cells[3].Text = "Em andamento";
+                        break;
+                    case 0:
+                        e.Row.Cells[3].Text = "Pendente";
+                        break;
+                }
+            }
+        }
     }
 
     protected void gdvOcorrencias_RowCommand(object sender, GridViewCommandEventArgs e)

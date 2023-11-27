@@ -61,9 +61,9 @@ public class UsuariosBD
             tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
 
             //object result = null;
-           // try
+            // try
             //{
-                var result = tempo.ExecuteScalar().ToString();
+            var result = tempo.ExecuteScalar().ToString();
             //}
             /*catch (Exception ex)
             {
@@ -83,7 +83,7 @@ public class UsuariosBD
             //object result = null;
             //try
             //{
-                var result = tempo.ExecuteScalar().ToString();
+            var result = tempo.ExecuteScalar().ToString();
             //}
             /*catch (Exception ex)
             {
@@ -101,11 +101,12 @@ public class UsuariosBD
         usu = new Usuario();
         if (verificarSindico == true)
         {
-            usu.redirecionar = "Pages/Sindico/Home.aspx";
-        }else 
+            usu.redirecionar = "Pages/Sindico/VisualizarOcorrencia.aspx";
+        }
+        else
         if (verificarMorador == true)
         {
-            usu.redirecionar = "Pages/Morador/Ocorrencia.aspx";
+            usu.redirecionar = "Pages/Morador/HistoricoOcorrencia.aspx";
         }
 
 
