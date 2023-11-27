@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -35,6 +36,84 @@ public class UsuariosBD
         cmd.Dispose();
         dr.Close();
         dr.Dispose();
+        return usu;
+    }
+
+    public static Usuario TipoLogin(int id)
+    {
+        Usuario usu = null;
+        IDbConnection conn = ConexaoBD.Conexao();
+        //IDataReader dr;
+        //IDataReader dr2;
+        Boolean verificarSindico = false;
+        Boolean verificarMorador = false;
+
+        string sql = "select if( exists( select * from usu_usuarios u inner join sin_sindico s on ?id = s.usu_id), true , false ) as sla;";
+        string sql2 = "select if( exists( select * from usu_usuarios u inner join mor_morador m on ?id = m.usu_id), true , false ) as sla;";
+        IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+        IDbCommand cmd2 = ConexaoBD.Comando(sql2, conn);
+        cmd.Parameters.Add(ConexaoBD.Parametro("?id", id));
+        cmd2.Parameters.Add(ConexaoBD.Parametro("?id", id));
+
+        using (var tempo = ConexaoBD.Comando(sql, conn))
+        {
+            tempo.Parameters.Add(ConexaoBD.Parametro("?id", id));
+            tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
+
+            //object result = null;
+           // try
+            //{
+                var result = tempo.ExecuteScalar().ToString();
+            //}
+            /*catch (Exception ex)
+            {
+                throw new ArgumentNullException("Não foi possível realizar a busca");
+            }*/
+            if (result == "1")
+            {
+                verificarSindico = true;
+            }
+        }
+
+        using (var tempo = ConexaoBD.Comando(sql2, conn))
+        {
+            tempo.Parameters.Add(ConexaoBD.Parametro("?id", id));
+            tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
+
+            //object result = null;
+            //try
+            //{
+                var result = tempo.ExecuteScalar().ToString();
+            //}
+            /*catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }*/
+            if (result == "1")
+            {
+                verificarMorador = true;
+            }
+        }
+
+        //dr = cmd.ExecuteReader();
+        //dr2 = cmd2.ExecuteReader();
+
+        usu = new Usuario();
+        if (verificarSindico == true)
+        {
+            usu.redirecionar = "Pages/Sindico/Home.aspx";
+        }else 
+        if (verificarMorador == true)
+        {
+            usu.redirecionar = "Pages/Morador/Ocorrencia.aspx";
+        }
+
+
+        conn.Close();
+        conn.Dispose();
+        cmd.Dispose();
+        //dr.Close();
+        //dr.Dispose();
         return usu;
     }
 

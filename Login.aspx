@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
-
-<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="login" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +13,10 @@
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- adminLTE style -->
-    <link href="Assets/css/adminlte.min.css" rel="stylesheet" />
-    <!-- Login Style-->
-    <link href="Assets/css/style.css" rel="stylesheet" />
-    <link href="Assets/css/styleLogin.css" rel="stylesheet" />
-
+    <!-- Theme style -->
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styleLogin.css">
 </head>
 
 <body class="hold-transition login-page">
@@ -53,21 +49,18 @@
                         <label class="form-check-label lembrar" for="CheckUsuario">Lembrar usuário</label>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <asp:LinkButton ID="btnEntrar" runat="server" CssClass="btn btn-primary entrar"
-                            OnClick="btnEntrar_Click"> ENTRAR <i class="fa fa-arrow-circle-o-right"> </i>
-                        </asp:LinkButton>
-                    </div>
+                    <asp:LinkButton ID="btnEntrar" runat="server" CssClass="btn btn-primary entrar"
+                        OnClick="btnEntrar_Click"> ENTRAR <i class="fa fa-arrow-circle-o-right"> </i>
+                    </asp:LinkButton>
+                </div>
                 </form>
             </div>
         </div>
     </section>
 
 
-    <!-- jQuery -->
-    <script src="Assets/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- script visible da senha -->
-    <script src="assets/JS/script.js"> </script>
+    <!-- jQuery
+    <script src="assets/plugins/jquery/jquery.min.js"></script> -->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
