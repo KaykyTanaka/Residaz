@@ -9,7 +9,27 @@ using System.Data;
 /// </summary>
 public class OcorrenciasBD
 {
+    public static DataSet SelectAll()
+    {
 
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection conn = ConexaoBD.Conexao();
+            string sql = "SELECT * FROM OCO_OCORRENCIA";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            IDataAdapter adp = ConexaoBD.Adapter(cmd);
+            adp.Fill(ds);
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
     public static DataSet SelectOcorrencias(int moradorID)
     {
         try
