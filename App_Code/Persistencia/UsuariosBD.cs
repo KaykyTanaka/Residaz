@@ -16,7 +16,7 @@ public class UsuariosBD
         IDbConnection conn = ConexaoBD.Conexao();
         IDataReader dr;
 
-        string sql = "select * from usu_usuarios where usu_email = ?email and usu_senha = ?senha";
+        string sql = "select * from usu_usuarios inner join pes_pessoas using(pes_id) where usu_email = ?email and usu_senha = ?senha";
         IDbCommand cmd = ConexaoBD.Comando(sql, conn);
         cmd.Parameters.Add(ConexaoBD.Parametro("?email", email));
         cmd.Parameters.Add(ConexaoBD.Parametro("?senha", senha));
@@ -29,6 +29,7 @@ public class UsuariosBD
             usu.id = Convert.ToInt32(dr["usu_id"].ToString());
             usu.email = dr["usu_email"].ToString();
             usu.senha = dr["usu_senha"].ToString();
+            usu.nome = dr["pes_nome"].ToString();
         }
 
         conn.Close();
