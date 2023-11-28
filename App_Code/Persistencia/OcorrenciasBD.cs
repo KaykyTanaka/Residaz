@@ -53,6 +53,65 @@ public class OcorrenciasBD
 
     }
 
+    public static Ocorrencia SelectByID(int id)
+    {
+        Ocorrencia oco = null;
+        IDbConnection conn = ConexaoBD.Conexao();
+        IDataReader dr;
+
+        string sql = "select * from oco_ocorrencia where oco_id = ?id";
+        IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+        cmd.Parameters.Add(ConexaoBD.Parametro("?id", id));
+
+
+        dr = cmd.ExecuteReader();
+
+        if (dr.Read())
+        {
+            oco = new Ocorrencia();
+            oco.categoria = dr["oco_categoria"].ToString();
+            oco.titulo = dr["oco_titulo"].ToString();
+            oco.descricao = dr["oco_descricao"].ToString();
+            oco.data = dr["oco_data"].ToString();
+            oco.providencias = dr["oco_providencias"].ToString();
+            oco.mor_id = Convert.ToInt32(dr["oco_id"].ToString());
+        }
+
+        conn.Close();
+        conn.Dispose();
+        cmd.Dispose();
+        dr.Close();
+        dr.Dispose();
+        return oco;
+    }
+
+
+    public static int UpdateProvidencias(string providencias, int id)
+    {
+        int error = 0;
+
+        try
+        {
+            IDbConnection conn = ConexaoBD.Conexao();
+            string sql = "UPDATE OCO_OCORRENCIA SET OCO_PROVIDENCIAS=?PROVIDENCIAS WHERE OCO_ID = ?ID ";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?EMAIL", providencias));;
+            cmd.Parameters.Add(ConexaoBD.Parametro("?ID", id));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            error = -2;
+        }
+        return error;
+
+    }
+
+
+
     public static int InsertOcorrencia(Ocorrencia ocorrencia)
     {
         int retorno = 0;
@@ -80,6 +139,8 @@ public class OcorrenciasBD
         }
         return retorno;
     }
+
+
 
 
 }

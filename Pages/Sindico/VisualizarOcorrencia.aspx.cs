@@ -8,6 +8,8 @@ using System.Data;
 
 public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
 {
+    int codigo;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -32,7 +34,10 @@ public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
+
+            LinkButton lbVisualizar = (LinkButton)e.Row.Cells[4].FindControl("lkbVisualizar");
             int statusValue;
+
             if (int.TryParse(e.Row.Cells[3].Text, out statusValue))
             {
                 switch (statusValue)
@@ -48,11 +53,31 @@ public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
                         break;
                 }
             }
+            lbVisualizar.Text = "<i class = 'fa fa-circle-info text-default'></i>";
         }
     }
 
     protected void gdvOcorrencias_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        if (e.CommandName.Contains("Visualizar"))
+        {
+            Ocorrencia o = OcorrenciasBD.SelectByID(Convert.ToInt32(e.CommandArgument));
+            Page.ClientScript.RegisterStartupScript(GetType(), "modalVisualizar", "$(document).ready(function(){$('#modalVisualizar').modal('show');});", true);
+            codigo = o.id;
+            lblTitle.Text = o.titulo;
+            lblCat.Text = o.categoria;
+            lblDesc.Text = o.descricao;
+            lblData.Text = o.data;
+            txtProvidencias.Text = o.providencias;
+        }
 
     }
+
+    protected void btnRegistrar_Click(object sender, EventArgs e)
+    {
+        string providencias = txtProvidencias.Text;
+        OcorrenciasBD.UpdateProvidencias(providencias, codigo);
+    }
+
+
 }
