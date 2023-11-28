@@ -23,7 +23,7 @@
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="../../Assets/images/Logo-Cor-Nova.png" alt="Residaz Logo" class="brand-image" style="opacity: .8">
-                <span class="brand-text text-decoration-none">Residaz</span>
+                <span class="brand-text text-white font-weight-bold text-decoration-none">Residaz</span>
             </a>
 
             <!-- Sidebar -->
@@ -34,7 +34,7 @@
                         <img src="../../Assets/images/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Luis Fabiano</a>
+                        <a href="#" class="d-block text-decoration-none text-white font-weight-bold">Luis Fabiano</a>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                         <li class="nav-item">
                             <a href="RegistrarOcorrencia.aspx" class="nav-link">
                                 <i class="fa-solid fa-bell" style="color: #00b3ff;"></i>
-                                <p>
+                                <p class ="text-white font-weight-bold">
                                     Nova Ocorrência
                                 </p>
 
@@ -55,7 +55,9 @@
                         <li class="nav-item">
                             <a href="HistoricoOcorrencia.aspx" class="nav-link">
                                 <i class="fa-solid fa-book-open" style="color: #7faaf5;"></i>
-                                <p>Histórico</p>
+                                <p class ="text-white font-weight-bold">
+                                    Histórico
+                                </p>
                             </a>
                         </li>
                     </ul>

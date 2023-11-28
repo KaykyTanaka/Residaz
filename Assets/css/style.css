@@ -23,7 +23,7 @@ body {
 }
 
 .content-wrapper {
-    background: none;
+    background-color: rgb(255, 0, 0) !important;
     min-height: 100vh;
 }
 

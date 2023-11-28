@@ -5,11 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="background: linear-gradient(180deg, #0077B6 0%, #00B4B8 100%);">
         <div class="container">
             <div class="row p-3">
                 <div class="col-12">
-                    <h4 class="mt-3 altera-fonte-titulo">Ocorrências</h4>
+                    <h4 class="mt-3 text-white font-weight-bolder">Ocorrências</h4>
                 </div>
 
 
