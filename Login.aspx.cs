@@ -9,12 +9,11 @@ public partial class login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void btnEntrar_Click(object sender, EventArgs e)
     {
-
 
         if (txtEmail.Text != "" && txtSenha.Text != "")
         {
@@ -23,9 +22,23 @@ public partial class login : System.Web.UI.Page
             if (usuario != null)
             {
                 Session["USUARIO"] = usuario;
-                Usuario temp = (Usuario) Session["USUARIO"];
-                Usuario verifUsu = UsuariosBD.TipoLogin( Convert.ToInt32(temp.id.ToString()) );
+                Usuario temp = (Usuario)Session["USUARIO"];
+                Usuario verifUsu = UsuariosBD.TipoLogin(Convert.ToInt32(temp.id.ToString()));
+                if (verifUsu.redirecionar == "Pages/Sindico/VisualizarOcorrencia.aspx")
+                {
+                    Session["SINDICO"] = Session["USUARIO"];
+                    Session["MORADOR"] = null;
+                    Session.Remove("USUARIO");
+                }
+                else
+                if (verifUsu.redirecionar == "Pages/Morador/HistoricoOcorrencia.aspx")
+                {
+                    Session["MORADOR"] = Session["USUARIO"];
+                    Session["SINDICO"] = null;
+                    Session.Remove("USUARIO");
+                }
                 Response.Redirect(verifUsu.redirecionar);
+                
             }
 
         }
