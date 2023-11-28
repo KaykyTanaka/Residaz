@@ -27,13 +27,14 @@ public partial class Pages_Morador_Ocorrencia : System.Web.UI.Page
     {
         if (txtTitulo.Text != "" && txtDescricao.Text != "")
         {
+            Usuario usuario = (Usuario)Session["MORADOR"];
             Ocorrencia ocorrencia = new Ocorrencia();
             ocorrencia.titulo = txtTitulo.Text;
             ocorrencia.descricao = txtDescricao.Text;
             ocorrencia.categoria = ddCategoria.SelectedValue;
             ocorrencia.data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             ocorrencia.providencias = "Aguardando...";
-            ocorrencia.mor_id = 13;             //Substituir pelo id do morador!!!
+            ocorrencia.mor_id = usuario.id;             //Substituir pelo id do morador!!!
             OcorrenciasBD.InsertOcorrencia(ocorrencia);
         }
         else

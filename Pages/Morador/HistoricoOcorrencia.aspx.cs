@@ -18,7 +18,8 @@ public partial class Pages_Morador_Historico : System.Web.UI.Page
 
     void LoadCard()
     {
-        DataSet ds = OcorrenciasBD.SelectOcorrencias(13); //substituir o numero pelo codigo do morador que estará na session;
+        Usuario usuario = (Usuario)Session["MORADOR"];
+        DataSet ds = OcorrenciasBD.SelectOcorrencias(usuario.id); //substituir o numero pelo codigo do morador que estará na session;
 
         if (ds != null)
         {
