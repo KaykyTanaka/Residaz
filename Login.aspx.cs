@@ -9,7 +9,7 @@ public partial class login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session.Clear();
     }
 
     protected void btnEntrar_Click(object sender, EventArgs e)
