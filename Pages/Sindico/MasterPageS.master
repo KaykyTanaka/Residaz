@@ -35,7 +35,8 @@
                         <img src="../../Assets/images/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Luis Fabiano</a>
+                        <a href="#" class="d-block">
+                            <asp:Label ID="usuNome" runat="server"></asp:Label></a>
                     </div>
                 </div>
 
@@ -49,8 +50,19 @@
                                 <i class="fa-solid fa-bell" style="color: #00b3ff;"></i>
                                 <p>
                                     Ocorrências
+                               
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton runat="server" ID="sair" OnClick="sair_Click">
+                                <a href="../../Login.aspx" class="nav-link">
+                                    <i class="fa-solid fa-door-open" style="color: #7faaf5;"></i>
+                                    <p class="text-white font-weight-bold">
+                                        Sair
+                                    </p>
+                                </a>
+                            </asp:LinkButton>
                         </li>
                     </ul>
                 </nav>

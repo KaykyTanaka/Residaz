@@ -34,7 +34,8 @@
                         <img src="../../Assets/images/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block text-decoration-none text-white font-weight-bold">Luis Fabiano</a>
+                        <a href="#" class="d-block text-decoration-none text-white font-weight-bold">
+                            <asp:Label ID="usuNome" runat="server"></asp:Label></a>
                     </div>
                 </div>
 
@@ -46,8 +47,9 @@
                         <li class="nav-item">
                             <a href="RegistrarOcorrencia.aspx" class="nav-link">
                                 <i class="fa-solid fa-bell" style="color: #00b3ff;"></i>
-                                <p class ="text-white font-weight-bold">
+                                <p class="text-white font-weight-bold">
                                     Nova Ocorrência
+                               
                                 </p>
 
                             </a>
@@ -55,10 +57,21 @@
                         <li class="nav-item">
                             <a href="HistoricoOcorrencia.aspx" class="nav-link">
                                 <i class="fa-solid fa-book-open" style="color: #7faaf5;"></i>
-                                <p class ="text-white font-weight-bold">
+                                <p class="text-white font-weight-bold">
                                     Histórico
+                               
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton runat="server" id="sair" OnClick="sair_Click">
+                            <a href="../../Login.aspx" class="nav-link">
+                                <i class="fa-solid fa-door-open" style="color: #7faaf5;"></i>
+                                <p class="text-white font-weight-bold">
+                                    Sair
+                                </p>
+                            </a>
+                            </asp:LinkButton>
                         </li>
                     </ul>
                 </nav>
