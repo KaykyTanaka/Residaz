@@ -8,7 +8,7 @@ using System.Data;
 
 public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
 {
-    int codigo;
+    static int codigo;
 
     protected void Page_Load(object sender, EventArgs e)
     {
