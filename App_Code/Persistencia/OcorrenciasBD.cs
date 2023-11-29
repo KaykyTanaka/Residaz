@@ -69,6 +69,7 @@ public class OcorrenciasBD
         if (dr.Read())
         {
             oco = new Ocorrencia();
+            oco.id = Convert.ToInt32(dr["oco_id"].ToString());
             oco.categoria = dr["oco_categoria"].ToString();
             oco.titulo = dr["oco_titulo"].ToString();
             oco.descricao = dr["oco_descricao"].ToString();
@@ -95,7 +96,7 @@ public class OcorrenciasBD
             IDbConnection conn = ConexaoBD.Conexao();
             string sql = "UPDATE OCO_OCORRENCIA SET OCO_PROVIDENCIAS=?PROVIDENCIAS WHERE OCO_ID = ?ID ";
             IDbCommand cmd = ConexaoBD.Comando(sql, conn);
-            cmd.Parameters.Add(ConexaoBD.Parametro("?EMAIL", providencias));;
+            cmd.Parameters.Add(ConexaoBD.Parametro("?PROVIDENCIAS", providencias));;
             cmd.Parameters.Add(ConexaoBD.Parametro("?ID", id));
             cmd.ExecuteNonQuery();
             conn.Close();
