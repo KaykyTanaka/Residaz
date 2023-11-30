@@ -141,7 +141,28 @@ public class OcorrenciasBD
         return retorno;
     }
 
+    public static int StatusOcorrencia(int codeUser, int value)
+    {
+        int error = 0;
 
+        try
+        {
+            IDbConnection conn = ConexaoBD.Conexao();
+            string sql = "UPDATE OCO_OCORRENCIA SET OCO_STATUS= ?VALUE WHERE OCO_ID = ?CODIGO";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?VALUE", value));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?CODIGO", codeUser));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            error = -2;
+        }
+        return error;
+    }
 
 
 }

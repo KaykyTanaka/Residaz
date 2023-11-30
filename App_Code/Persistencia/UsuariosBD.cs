@@ -59,7 +59,7 @@ public class UsuariosBD
         using (var tempo = ConexaoBD.Comando(sql, conn))
         {
             tempo.Parameters.Add(ConexaoBD.Parametro("?id", id));
-            tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
+            //tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
 
             //object result = null;
             // try
@@ -79,7 +79,7 @@ public class UsuariosBD
         using (var tempo = ConexaoBD.Comando(sql2, conn))
         {
             tempo.Parameters.Add(ConexaoBD.Parametro("?id", id));
-            tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
+            //tempo.Parameters.Add(ConexaoBD.Parametro("sla", MySqlDbType.Bit));
 
             //object result = null;
             //try
@@ -90,7 +90,7 @@ public class UsuariosBD
             {
                 throw new Exception(ex.Message);
             }*/
-            if (result == "1")
+            if (result == "1" && verificarSindico == false)
             {
                 verificarMorador = true;
             }
@@ -118,5 +118,27 @@ public class UsuariosBD
         //dr.Dispose();
         return usu;
     }
+    
+    public static int ActiveInUser(int codeUser, int value)
+    {
+        int error = 0;
 
+        try
+        {
+            IDbConnection conn = ConexaoBD.Conexao();
+            string sql = "UPDATE USU_USUARIOS SET USU_ATIVO = ?VALUE WHERE USU_CODIGO = ?CODIGO";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?VALUE", value));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?CODIGO", codeUser));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            error = -2;
+        }
+        return error;
+    }
 }
