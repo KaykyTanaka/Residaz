@@ -12,13 +12,16 @@ public partial class Pages_Morador_Ocorrencia : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            // Adiciona os itens à DropDownList apenas se a página não estiver sendo carregada por um postback
-            string[] categorias = { "Barulhos", "Areas comuns", "Lixo", "Manutenções", "AVCB (Auto de Vistoria do Corpo de Bombeiros)", "Pessoas Externas", "Areas alugadas", "Segurança", "Obras do condominio", "Obras de moradores" };
-            ddCategoria.Items.Insert(0, new ListItem("Selecione uma Categoria", ""));
-            foreach (string categoria in categorias)
+            if (Session["MORADOR"] != null)
             {
+                // Adiciona os itens à DropDownList apenas se a página não estiver sendo carregada por um postback
+                string[] categorias = { "Barulhos", "Areas comuns", "Lixo", "Manutenções", "AVCB (Auto de Vistoria do Corpo de Bombeiros)", "Pessoas Externas", "Areas alugadas", "Segurança", "Obras do condominio", "Obras de moradores" };
+                ddCategoria.Items.Insert(0, new ListItem("Selecione uma Categoria", ""));
+                foreach (string categoria in categorias)
+                {
 
-                ddCategoria.Items.Add(new ListItem(categoria, categoria));
+                    ddCategoria.Items.Add(new ListItem(categoria, categoria));
+                }
             }
         }
     }
