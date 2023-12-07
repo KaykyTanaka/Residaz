@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Descrição resumida de Usuario
+/// Descrição resumida de Pessoa
 /// </summary>
-public class Usuario
+public class Pessoa
 {
     public int id { get; set; }
-    public string email { get; set; }
-    public string senha { get; set; }
     public string nome { get; set; }
-    public string redirecionar { get; set; }
+    public string cpf { get; set; }
+    public string telefone { get; set; }
+
 }

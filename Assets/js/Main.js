@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('.OcoTable').DataTable({
+    $('.Tabela').DataTable({
         language: {
             url: "../../Assets/plugins/datatables/pt-BR.json"
         }

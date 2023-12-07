@@ -14,7 +14,7 @@
 
                 <div class="text-bg-light rounded p-5">
 
-                    <asp:GridView ID="gdvOcorrencias" AutoGenerateColumns="false" runat="server" CssClass="table table-striped OcoTable" Visible="false" OnRowDataBound="gdvOcorrencias_RowDataBound" OnRowCommand="gdvOcorrencias_RowCommand">
+                    <asp:GridView ID="gdvOcorrencias" AutoGenerateColumns="false" runat="server" CssClass="table table-striped Tabela" Visible="false" OnRowDataBound="gdvOcorrencias_RowDataBound" OnRowCommand="gdvOcorrencias_RowCommand">
 
                         <Columns>
                             <asp:BoundField DataField="oco_id" HeaderText="#" />

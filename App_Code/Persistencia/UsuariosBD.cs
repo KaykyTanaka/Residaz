@@ -118,7 +118,7 @@ public class UsuariosBD
         //dr.Dispose();
         return usu;
     }
-    
+
     public static int ActiveInUser(int codeUser, int value)
     {
         int error = 0;
@@ -140,5 +140,33 @@ public class UsuariosBD
             error = -2;
         }
         return error;
+    }
+    public static DataSet SelectAll()
+    {
+
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection conn = ConexaoBD.Conexao();
+            string sql = @"select s.usu_id, pes_nome, usu_email, pes_telefone,s.sin_status as stats, 'Sindico' as tipo from usu_usuarios u inner join sin_sindico s on u.pes_id = s.usu_id inner join pes_pessoas using (pes_id)
+union 
+select  m.usu_id, pes_nome, usu_email, pes_telefone, m.mor_status as stats,'Morador' as tipo from usu_usuarios u inner join mor_morador m on u.pes_id = m.usu_id inner join pes_pessoas using (pes_id)
+union 
+select  z.usu_id, pes_nome, usu_email, pes_telefone, z.zel_status as stats,'Zelador' as tipo from usu_usuarios u inner join zel_zelador z on u.pes_id = z.usu_id inner join pes_pessoas using (pes_id)
+union
+select  p.usu_id, pes_nome, usu_email, pes_telefone, p.por_status as stats,'Porteiro' as tipo from usu_usuarios u inner join por_porteiro p on u.pes_id = p.usu_id inner join pes_pessoas using (pes_id);";
+            
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            IDataAdapter adp = ConexaoBD.Adapter(cmd);
+            adp.Fill(ds);
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 }

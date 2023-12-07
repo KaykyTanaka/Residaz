@@ -54,6 +54,18 @@
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="VisualizarUsuarios.aspx" class="nav-link">
+                                <i class="fa-solid fa-users" style="color: #00b3ff;"></i>
+                                <p>
+                                    Usuarios
+       
+                                </p>
+                            </a>
+                        </li>
+
+
                         <li class="nav-item">
                             <asp:LinkButton runat="server" ID="sair" OnClick="sair_Click">
                                 <a href="../../Login.aspx" class="nav-link">
