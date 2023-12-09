@@ -8,6 +8,7 @@ using System.Data;
 
 public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
 {
+    static Boolean IsPageRefresh;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -16,6 +17,21 @@ public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
             {
                 LoadGrid();
             }
+            ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+            Session["SessionId"] = ViewState["ViewStateId"].ToString();
+        }else
+        {
+            if (ViewState["ViewStateId"].ToString() != Session["SessionId"].ToString())
+            {
+                IsPageRefresh = true;
+            }
+            else
+            {
+                IsPageRefresh = false;
+            }
+
+            Session["SessionId"] = System.Guid.NewGuid().ToString();
+            ViewState["ViewStateId"] = Session["SessionId"].ToString();
         }
 
         if (gdvOcorrencias.Rows.Count > 0)
@@ -73,39 +89,42 @@ public partial class Pages_Sindico_VisualizarOcorrencia : System.Web.UI.Page
     int codigoU;
     protected void gdvOcorrencias_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        int codigo = Convert.ToInt32(e.CommandArgument.ToString());
-        if (e.CommandName.Contains("Visualizar"))
+        if (IsPageRefresh == false)
         {
-            Ocorrencia o = OcorrenciasBD.SelectByID(codigo);
-            Page.ClientScript.RegisterStartupScript(GetType(), "modalVisualizar", "$(document).ready(function(){$('#modalVisualizar').modal('show');});", true);
-            codigoU = o.id;
-            lblTitle.Text = o.titulo;
-            lblCat.Text = o.categoria;
-            lblDesc.Text = o.descricao;
-            lblData.Text = o.data;
-            txtProvidencias.Text = o.providencias;
-        }
+            int codigo = Convert.ToInt32(e.CommandArgument.ToString());
+            if (e.CommandName.Contains("Visualizar"))
+            {
+                Ocorrencia o = OcorrenciasBD.SelectByID(codigo);
+                Page.ClientScript.RegisterStartupScript(GetType(), "modalVisualizar", "$(document).ready(function(){$('#modalVisualizar').modal('show');});", true);
+                codigoU = o.id;
+                lblTitle.Text = o.titulo;
+                lblCat.Text = o.categoria;
+                lblDesc.Text = o.descricao;
+                lblData.Text = o.data;
+                txtProvidencias.Text = o.providencias;
+            }
 
-        if (e.CommandName.Contains("Solucionado") )
-        {
-            Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrência já resolvida! ');", true);
-            LoadGrid();
-        }
-        if (e.CommandName.Contains("Solucionar"))
-        {
-            OcorrenciasBD.StatusOcorrencia(codigo, 2);
-            LoadGrid();
-            //Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrência solucionada! ');", true);
-        }
-        if (e.CommandName.Contains("Iniciar"))
-        {
-            OcorrenciasBD.StatusOcorrencia(codigo, 1);
-            LoadGrid();
-            //Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrência iniciada. ');", true);
-        }
-        if (e.CommandName.Contains("Neutro"))
-        {
+            if (e.CommandName.Contains("Solucionado"))
+            {
+                Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrência já resolvida! ');", true);
+                LoadGrid();
+            }
+            if (e.CommandName.Contains("Solucionar"))
+            {
+                OcorrenciasBD.StatusOcorrencia(codigo, 2);
+                LoadGrid();
+                //Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrência solucionada! ');", true);
+            }
+            if (e.CommandName.Contains("Iniciar"))
+            {
+                OcorrenciasBD.StatusOcorrencia(codigo, 1);
+                LoadGrid();
+                //Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrência iniciada. ');", true);
+            }
+            if (e.CommandName.Contains("Neutro"))
+            {
 
+            }
         }
         /*if (UsuariosBD.ActiveInUser(codigo, 1) == 0)
         {
