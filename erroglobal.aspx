@@ -21,11 +21,13 @@
 </head>
 
 <body class="hold-transition login-page">
-    <section class="bloco container d-flex align-items-center justify-content-center">
-        <div class="login text-center">
-            <div style="margin-top: 35%;">
-                <h1 style="font-size: 50px;">Erro</h1>
-                <h2 style="font-size: 100px; font-weight: bold;">404 </h2>
+    <section class="container d-flex align-items-center justify-content-center">
+        <div class="erro d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <img src="Assets/images/triste.png" class = "triste"/>
+                <h1 class ="font-weight-bolder text-primary">404</h1>
+                <h2 class ="font-weight-bold">Erro</h2>
+                <h3 class = "mt-4">Página não encontrada...</h3>
             </div>
         </div>
     </section>
