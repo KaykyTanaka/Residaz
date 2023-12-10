@@ -46,15 +46,16 @@ public class UsuariosBD
         Usuario usu = null;
         IDbConnection conn = ConexaoBD.Conexao();
 
-        string sql = 
-            "select *, 's' as tipo from usu_usuarios u inner join sin_sindico s on u.usu_id = s.usu_id where s.usu_id = ?id "+
-            "union " +
-            "select *, 'm' as tipo from usu_usuarios u inner join mor_morador m on u.usu_id = m.usu_id where m.usu_id = ?id;";
+        string sql =
+            @"select *, 's' as tipo from usu_usuarios u inner join sin_sindico s on u.usu_id = s.usu_id where s.usu_id = ?id 
+            union 
+            select *, 'm' as tipo from usu_usuarios u inner join mor_morador m on u.usu_id = m.usu_id where m.usu_id = ?id;";
         using (var tempo = ConexaoBD.Comando(sql, conn))
         {
             tempo.Parameters.Add(ConexaoBD.Parametro("?id", id));
             var result = tempo.ExecuteReader();
-            if(result.Read()){
+            if (result.Read())
+            {
                 usu = new Usuario
                 {
                     tipo = result["tipo"].ToString()
@@ -107,13 +108,13 @@ public class UsuariosBD
             DataSet ds = new DataSet();
             IDbConnection conn = ConexaoBD.Conexao();
             string sql = @"select s.usu_id, pes_nome, usu_email, pes_telefone,s.sin_status as stats, 'Sindico' as tipo from usu_usuarios u inner join sin_sindico s on u.pes_id = s.usu_id inner join pes_pessoas using (pes_id)
-union 
-select  m.usu_id, pes_nome, usu_email, pes_telefone, m.mor_status as stats,'Morador' as tipo from usu_usuarios u inner join mor_morador m on u.pes_id = m.usu_id inner join pes_pessoas using (pes_id)
-union 
-select  z.usu_id, pes_nome, usu_email, pes_telefone, z.zel_status as stats,'Zelador' as tipo from usu_usuarios u inner join zel_zelador z on u.pes_id = z.usu_id inner join pes_pessoas using (pes_id)
-union
-select  p.usu_id, pes_nome, usu_email, pes_telefone, p.por_status as stats,'Porteiro' as tipo from usu_usuarios u inner join por_porteiro p on u.pes_id = p.usu_id inner join pes_pessoas using (pes_id);";
-            
+                            union 
+                            select  m.usu_id, pes_nome, usu_email, pes_telefone, m.mor_status as stats,'Morador' as tipo from usu_usuarios u inner join mor_morador m on u.pes_id = m.usu_id inner join pes_pessoas using (pes_id)
+                            union 
+                            select  z.usu_id, pes_nome, usu_email, pes_telefone, z.zel_status as stats,'Zelador' as tipo from usu_usuarios u inner join zel_zelador z on u.pes_id = z.usu_id inner join pes_pessoas using (pes_id)
+                            union
+                            select  p.usu_id, pes_nome, usu_email, pes_telefone, p.por_status as stats,'Porteiro' as tipo from usu_usuarios u inner join por_porteiro p on u.pes_id = p.usu_id inner join pes_pessoas using (pes_id);";
+
             IDbCommand cmd = ConexaoBD.Comando(sql, conn);
             IDataAdapter adp = ConexaoBD.Adapter(cmd);
             adp.Fill(ds);
@@ -127,4 +128,81 @@ select  p.usu_id, pes_nome, usu_email, pes_telefone, p.por_status as stats,'Port
             return null;
         }
     }
+
+    public static int InsertPessoa(Pessoa pessoa)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection conn;
+            IDbCommand cmd;
+            string sql = "INSERT INTO PES_PESSOAS VALUES(0, ?nome, ?cpf, ?telefone);";
+            conn = ConexaoBD.Conexao();
+            cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?nome", pessoa.nome));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?cpf", pessoa.cpf));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?telefone", pessoa.telefone));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
+
+
+    public static int InsertUsuario(Usuario usuario)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection conn;
+            IDbCommand cmd;
+            string sql = "INSERT INTO USU_USUARIOS VALUES(0, ?email, ?senha, ?idPessoa);";
+            conn = ConexaoBD.Conexao();
+            cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?email", usuario.email));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?senha", usuario.senha));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?idPessoa", usuario.idPessoa));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
+
+
+    public static DataSet SelectPessoas()
+    {
+        try
+        {
+            DataSet ds = new DataSet();
+            IDbConnection conn = ConexaoBD.Conexao();
+            string sql = "select * from pes_pessoas;";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            IDataAdapter adp = ConexaoBD.Adapter(cmd);
+            adp.Fill(ds);
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+
+
+
 }

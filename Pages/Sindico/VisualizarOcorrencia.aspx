@@ -26,16 +26,10 @@
                                     <asp:LinkButton CommandName="Editar" CommandArgument='<%# Bind("oco_id") %>' ID="lbeditar" CssClass="btn btn-default" title="Editar Usuario" data-toggle="tooltip" runat="server"></asp:LinkButton>
                                     <asp:LinkButton CommandName="Visualizar" CommandArgument='<%# Bind("oco_id")%>' ID="lkbVisualizar" CssClass="btn btn-default" data-toggle="tooltip" runat="server"></asp:LinkButton>
                                 </ItemTemplate>
-
                             </asp:TemplateField>
-
-
-
                         </Columns>
                     </asp:GridView>
-
                 </div>
-
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
         </div>
@@ -47,8 +41,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        <asp:Label ID="lblTitle" runat="server"></asp:Label></h1>
+                    <h1 class="modal-title fs-5">
+                        <asp:Label ID="lblTitle" runat="server"></asp:Label>
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

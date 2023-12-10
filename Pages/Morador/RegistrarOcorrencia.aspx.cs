@@ -37,7 +37,7 @@ public partial class Pages_Morador_Ocorrencia : System.Web.UI.Page
             ocorrencia.categoria = ddCategoria.SelectedValue;
             ocorrencia.data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             ocorrencia.providencias = "Aguardando...";
-            ocorrencia.mor_id = usuario.id;             //Substituir pelo id do morador!!!
+            ocorrencia.mor_id = usuario.id;
             OcorrenciasBD.InsertOcorrencia(ocorrencia);
         }
         else

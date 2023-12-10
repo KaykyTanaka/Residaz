@@ -16,6 +16,7 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
             if (Session["SINDICO"] != null)
             {
                 LoadGrid();
+                LoadDropDown();
             }
         }
 
@@ -24,6 +25,23 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
             gdvUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
+    private void LoadDropDown()
+    {
+        DataSet dsPessoas = UsuariosBD.SelectPessoas();
+
+        if (dsPessoas != null && dsPessoas.Tables.Count > 0 && dsPessoas.Tables[0].Rows.Count > 0)
+        {
+            ddPessoa.DataSource = dsPessoas;
+            ddPessoa.DataTextField = "pes_nome";
+            ddPessoa.DataValueField = "pes_id";
+            ddPessoa.DataBind();
+        }
+        else
+        {
+
+        }
+    }
+
 
     void LoadGrid()
     {
@@ -53,5 +71,33 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
     }
     protected void gdvUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+
+    }
+
+    protected void btnNewUsuario_Click(object sender, EventArgs e)
+    {
+        Page.ClientScript.RegisterStartupScript(GetType(), "modalNovoUsu", "$(document).ready(function(){$('#modalNovoUsu').modal('show');});", true);
+
+    }
+
+    protected void btnRegistrar_Click(object sender, EventArgs e)
+    {
+        Pessoa pessoa = new Pessoa();
+        pessoa.nome = txtNome.Text;
+        pessoa.cpf = txtCpf.Text;
+        pessoa.telefone = txtTelefone.Text;
+        UsuariosBD.InsertPessoa(pessoa);
+
+    }
+
+    protected void btnCadastrar_Click(object sender, EventArgs e)
+    {
+        Usuario usuario = new Usuario();
+        usuario.email = txtEmail.Text;
+        usuario.senha = txtSenha.Text;
+        usuario.idPessoa = int.Parse(ddPessoa.SelectedValue);
+        UsuariosBD.InsertUsuario(usuario);
+
+
     }
 }
