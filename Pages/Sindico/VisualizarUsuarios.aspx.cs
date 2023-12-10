@@ -98,6 +98,34 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
         usuario.idPessoa = int.Parse(ddPessoa.SelectedValue);
         UsuariosBD.InsertUsuario(usuario);
 
-
+        string tipoUsuario = rbTipoUsuario.SelectedValue;
+        switch (tipoUsuario)
+        {
+            case "Sindico":
+                Sindico sindico = new Sindico();
+                int idSindico = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
+                sindico.usu_id = idSindico;
+                UsuariosBD.InsertSindico(sindico);
+                break;
+            case "Morador":
+                Morador morador = new Morador();
+                int idMorador= UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
+                morador.usu_id = idMorador;
+                morador.apto = txtApartamento.Text;
+                UsuariosBD.InsertMorador(morador);
+                break;
+            case "Porteiro":
+                Porteiro porteiro = new Porteiro();
+                int idPorteiro = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
+                porteiro.usu_id = idPorteiro;
+                UsuariosBD.InsertPorteiro(porteiro);
+                break;
+            case "Zelador":
+                Zelador zelador = new Zelador();
+                int idZelador = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
+                zelador.usu_id = idZelador;
+                UsuariosBD.InsertZelador(zelador);
+                break;
+        }
     }
 }

@@ -202,7 +202,126 @@ public class UsuariosBD
         }
     }
 
+    public static int ObterIdUsuarioPorEmail(string email)
+    {
+        int retorno = 0;
+        try
+        {
+            using (IDbConnection conn = ConexaoBD.Conexao())
+            {
+                string sql = "SELECT usu_id FROM USU_USUARIOS WHERE usu_email = ?email;";
+                using (IDbCommand cmd = ConexaoBD.Comando(sql, conn))
+                {
+                    cmd.Parameters.Add(ConexaoBD.Parametro("?email", email));
 
+                    // ExecuteScalar é usado para obter um valor único do banco de dados
+                    object result = cmd.ExecuteScalar();
 
+                    // Se o resultado não for nulo, convertemos para inteiro
+                    if (result != null)
+                    {
+                        retorno = Convert.ToInt32(result);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
+
+    public static int InsertSindico(Sindico sindico)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection conn;
+            IDbCommand cmd;
+            string sql = "INSERT INTO SIN_SINDICO VALUES(0, 1, null, ?usu_id);";
+            conn = ConexaoBD.Conexao();
+            cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?usu_id", sindico.usu_id));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
+
+    public static int InsertMorador(Morador morador)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection conn;
+            IDbCommand cmd;
+            string sql = "INSERT INTO MOR_MORADOR VALUES(0, ?apto ,1, ?usu_id);";
+            conn = ConexaoBD.Conexao();
+            cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?apto", morador.apto));
+            cmd.Parameters.Add(ConexaoBD.Parametro("?usu_id", morador.usu_id));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
+
+    public static int InsertPorteiro(Porteiro porteiro)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection conn;
+            IDbCommand cmd;
+            string sql = "INSERT INTO por_porteiro VALUES(0, 1, null, ?usu_id);";
+            conn = ConexaoBD.Conexao();
+            cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?usu_id", porteiro.usu_id));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
+    public static int InsertZelador(Zelador zelador)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection conn;
+            IDbCommand cmd;
+            string sql = "INSERT INTO zel_zelador VALUES(0, 1, null, ?usu_id);";
+            conn = ConexaoBD.Conexao();
+            cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?usu_id", zelador.usu_id));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            retorno = -2;
+        }
+        return retorno;
+    }
 
 }

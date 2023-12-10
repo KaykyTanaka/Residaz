@@ -95,13 +95,16 @@
                                 <asp:TextBox ID="txtSenha" runat="server" placeholder="senha" CssClass="form-control" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
                             </div>
 
-                            <asp:RadioButton ID="rbSindico" runat="server" Text="Síndico" GroupName="tipoUsuario" />
-                            <asp:RadioButton ID="rbMorador" runat="server" Text="Morador" GroupName="tipoUsuario" />
-                            <asp:RadioButton ID="rbPorteiro" runat="server" Text="Porteiro" GroupName="tipoUsuario" />
-                            <asp:RadioButton ID="rbZelador" runat="server" Text="Zelador" GroupName="tipoUsuario" />
+                            <asp:RadioButtonList ID="rbTipoUsuario" runat="server" RepeatDirection="Vertical">
+                                <asp:ListItem Text="Síndico" Value="Sindico" />
+                                <asp:ListItem Text="Morador" Value="Morador" />
+                                <asp:ListItem Text="Porteiro" Value="Porteiro" />
+                                <asp:ListItem Text="Zelador" Value="Zelador" />
+                            </asp:RadioButtonList>
 
+                            <asp:TextBox ID="TextBox1" runat="server" ClientIDMode="Static" placeholder="Número do Apartamento" Style="display: none;"></asp:TextBox>
 
-                            <div class="mb-3">
+                            <div class="mb-3" id="apto">
                                 <label for="txtApartamento" class="form-label">Apartamento</label>
                                 <asp:TextBox ID="txtApartamento" runat="server" placeholder="apartamento" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
                             </div>
@@ -119,6 +122,21 @@
         </div>
     </div>
 
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#apto').hide();
+            $('#<%= rbTipoUsuario.ClientID %> input').change(function () {
+                if ($('#<%= rbTipoUsuario.ClientID %> input:checked').val() === 'Morador') {
+                    $('#apto').show();
+                } else {
+                    $('#apto').hide();
+                }
+            });
+        });
+    </script>
 
 </asp:Content>
 
