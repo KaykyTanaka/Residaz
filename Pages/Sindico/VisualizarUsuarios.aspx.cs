@@ -87,7 +87,7 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
         pessoa.cpf = txtCpf.Text;
         pessoa.telefone = txtTelefone.Text;
         UsuariosBD.InsertPessoa(pessoa);
-
+        LoadDropDown();
     }
 
     protected void btnCadastrar_Click(object sender, EventArgs e)
@@ -127,5 +127,6 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
                 UsuariosBD.InsertZelador(zelador);
                 break;
         }
+        LoadGrid();
     }
 }
