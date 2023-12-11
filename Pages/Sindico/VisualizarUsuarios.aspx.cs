@@ -88,6 +88,9 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
         pessoa.telefone = txtTelefone.Text;
         UsuariosBD.InsertPessoa(pessoa);
         LoadDropDown();
+
+        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });", true);
+
     }
 
     protected void btnCadastrar_Click(object sender, EventArgs e)
@@ -106,10 +109,12 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
                 int idSindico = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
                 sindico.usu_id = idSindico;
                 UsuariosBD.InsertSindico(sindico);
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });", true);
+
                 break;
             case "Morador":
                 Morador morador = new Morador();
-                int idMorador= UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
+                int idMorador = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
                 morador.usu_id = idMorador;
                 morador.apto = txtApartamento.Text;
                 UsuariosBD.InsertMorador(morador);

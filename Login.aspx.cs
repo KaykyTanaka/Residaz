@@ -38,13 +38,16 @@ public partial class login : System.Web.UI.Page
                     Session.Remove("USUARIO");
                 }
                 Response.Redirect(verifUsu.redirecionar);
-                
+
+            }
+            else {
+                lblErr.Text = "<div class='alert alert-danger text-center alert-dismissible' role='alert'><strong><i class='fa fa-ban'></i>&nbsp;</strong> Usuário ou senha inválidos!</div>";
             }
 
         }
         else
         {
-            lblErr.Text = "Preencha os campos corretamente! ";
+            lblErr.Text = "<div class='alert alert-warning text-center alert-dismissible' role='alert'><strong><i class='fa fa-ban'></i>&nbsp;</strong> Preencha os campos corretamente!</div>";
         }
 
 

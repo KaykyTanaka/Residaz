@@ -27,8 +27,10 @@
                 <img src="assets/images/Logo-Cor-Nova.png" class="loguinho mt-5">
             </div>
             <h1 class="text-center mt-5 altera-fonte">Olá! Bem vindo</h1>
-            <div class="text-center ">
-                <asp:Label ID="lblErr" runat="server" CssClass="text-danger"></asp:Label>
+            <div class="text-center mt-2 ">
+                <asp:Label ID="lblErr" runat="server" CssClass="text-danger">
+
+                </asp:Label>
             </div>
             <div class="mb-3">
                 <form class="m-5" runat="server" defaultbutton="btnEntrar">
