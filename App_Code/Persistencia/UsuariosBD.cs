@@ -107,13 +107,17 @@ public class UsuariosBD
         {
             DataSet ds = new DataSet();
             IDbConnection conn = ConexaoBD.Conexao();
-            string sql = @"select s.usu_id, pes_nome, usu_email, pes_telefone,s.sin_status as stats, 'Sindico' as tipo from usu_usuarios u inner join sin_sindico s on u.pes_id = s.usu_id inner join pes_pessoas using (pes_id)
-                            union 
-                            select  m.usu_id, pes_nome, usu_email, pes_telefone, m.mor_status as stats,'Morador' as tipo from usu_usuarios u inner join mor_morador m on u.pes_id = m.usu_id inner join pes_pessoas using (pes_id)
-                            union 
-                            select  z.usu_id, pes_nome, usu_email, pes_telefone, z.zel_status as stats,'Zelador' as tipo from usu_usuarios u inner join zel_zelador z on u.pes_id = z.usu_id inner join pes_pessoas using (pes_id)
-                            union
-                            select  p.usu_id, pes_nome, usu_email, pes_telefone, p.por_status as stats,'Porteiro' as tipo from usu_usuarios u inner join por_porteiro p on u.pes_id = p.usu_id inner join pes_pessoas using (pes_id);";
+            string sql = @"select s.usu_id, pes_nome, usu_email, pes_telefone,s.sin_status as stats, 'Sindico' as tipo 
+from pes_pessoas inner join usu_usuarios u using (pes_id) inner join sin_sindico s on u.usu_id = s.usu_id
+union
+select  m.usu_id, pes_nome, usu_email, pes_telefone, m.mor_status as stats,'Morador' as tipo
+from pes_pessoas inner join usu_usuarios u using(pes_id) inner join mor_morador m on u.usu_id = m.usu_id
+union
+select  z.usu_id, pes_nome, usu_email, pes_telefone, z.zel_status as stats,'Zelador' as tipo 
+from pes_pessoas inner join usu_usuarios u using(pes_id) inner join zel_zelador z on u.usu_id = z.usu_id
+union
+select  p.usu_id, pes_nome, usu_email, pes_telefone, p.por_status as stats,'Porteiro' as tipo 
+from pes_pessoas inner join usu_usuarios u using(pes_id) inner join por_porteiro p on u.usu_id = p.usu_id;";
 
             IDbCommand cmd = ConexaoBD.Comando(sql, conn);
             IDataAdapter adp = ConexaoBD.Adapter(cmd);
