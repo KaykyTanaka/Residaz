@@ -34,8 +34,8 @@ public partial class Pages_Morador_MasterPageM : System.Web.UI.MasterPage
                     Response.Redirect(Session["SindicoURL"].ToString());
                 //Page.Response.Redirect(Page.Request.Url.ToString(), true);
                 //Response.Redirect(Request.UrlReferrer.ToString());
+                Response.Redirect("../../Login.aspx");
             }
-            Response.Redirect("../../Login.aspx");
         }
     }
 
