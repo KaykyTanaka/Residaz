@@ -89,7 +89,7 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
         UsuariosBD.InsertPessoa(pessoa);
         LoadDropDown();
 
-        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });", true);
+        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom trabalho!', text: 'Pessoa Cadastrada!', icon: 'success' });", true);
 
     }
 
@@ -109,7 +109,7 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
                 int idSindico = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
                 sindico.usu_id = idSindico;
                 UsuariosBD.InsertSindico(sindico);
-                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom Trabalho!', text: 'Usuário Cadastrado!', icon: 'success' });", true);
 
                 break;
             case "Morador":
@@ -118,18 +118,21 @@ public partial class Pages_Sindico_VisualizarUsuarios : System.Web.UI.Page
                 morador.usu_id = idMorador;
                 morador.apto = txtApartamento.Text;
                 UsuariosBD.InsertMorador(morador);
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom Trabalho!', text: 'Usuário Cadastrado!', icon: 'success' });", true);
                 break;
             case "Porteiro":
                 Porteiro porteiro = new Porteiro();
                 int idPorteiro = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
                 porteiro.usu_id = idPorteiro;
                 UsuariosBD.InsertPorteiro(porteiro);
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom Trabalho!', text: 'Usuário Cadastrado!', icon: 'success' });", true);
                 break;
             case "Zelador":
                 Zelador zelador = new Zelador();
                 int idZelador = UsuariosBD.ObterIdUsuarioPorEmail(txtEmail.Text);
                 zelador.usu_id = idZelador;
                 UsuariosBD.InsertZelador(zelador);
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom Trabalho!', text: 'Usuário Cadastrado!', icon: 'success' });", true);
                 break;
         }
         LoadGrid();
