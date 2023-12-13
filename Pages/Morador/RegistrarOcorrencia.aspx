@@ -14,11 +14,6 @@
             </div>
             <div class="row mt-3 p-3">
                 <div class="col-6 offset-3 align-items-center mt-3">
-                    <label for="txtTitulo" class="form-label text-white font-weight-bold">Titulo</label>
-                    <asp:TextBox ID="txtTitulo" runat="server" placeholder="Titulo" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
-                </div>
-
-                <div class="col-6 offset-3 align-items-center mt-3">
                     <label for="ddCategoria" class="form-label text-white font-weight-bold">Categoria</label>
                     <asp:DropDownList ID="ddCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>

@@ -111,8 +111,6 @@ public class OcorrenciasBD
 
     }
 
-
-
     public static int InsertOcorrencia(Ocorrencia ocorrencia)
     {
         int retorno = 0;
@@ -120,11 +118,10 @@ public class OcorrenciasBD
         {
             IDbConnection conn;
             IDbCommand cmd;
-            string sql = "INSERT INTO OCO_OCORRENCIA VALUES(0, ?categoria, ?titulo, ?descricao, ?data, ?providencias, 0, ?mor_id );";
+            string sql = "INSERT INTO OCO_OCORRENCIA VALUES(0, ?categoria, 'Ocorrencia', ?descricao, ?data, ?providencias, 0, ?mor_id );";
             conn = ConexaoBD.Conexao();
             cmd = ConexaoBD.Comando(sql, conn);
             cmd.Parameters.Add(ConexaoBD.Parametro("?categoria", ocorrencia.categoria));
-            cmd.Parameters.Add(ConexaoBD.Parametro("?titulo", ocorrencia.titulo));
             cmd.Parameters.Add(ConexaoBD.Parametro("?descricao", ocorrencia.descricao));
             cmd.Parameters.Add(ConexaoBD.Parametro("?data", ocorrencia.data));
             cmd.Parameters.Add(ConexaoBD.Parametro("?providencias", ocorrencia.providencias));
@@ -163,6 +160,18 @@ public class OcorrenciasBD
         }
         return error;
     }
+    public static List<int> ObterDados()
+    {
+        // Simula a obtenção de dados do banco de dados
+        Random random = new Random();
+        List<int> dados = new List<int>();
 
+        for (int i = 0; i < 5; i++)
+        {
+            dados.Add(random.Next(1, 100));
+        }
+
+        return dados;
+    }
 
 }

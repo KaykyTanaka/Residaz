@@ -51,3 +51,10 @@ body {
     width:150px;
     height:150px;
 }
+
+.limite-caracteres {
+    max-width: 150px; /* Ajuste este valor conforme necessário */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

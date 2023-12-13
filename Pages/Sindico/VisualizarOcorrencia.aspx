@@ -18,7 +18,7 @@
 
                         <Columns>
                             <asp:BoundField DataField="oco_id" HeaderText="#" />
-                            <asp:BoundField DataField="oco_titulo" HeaderText="titulo" />
+                            <asp:BoundField DataField="oco_descricao" HeaderText="Descrição" ItemStyle-CssClass="limite-caracteres" />
                             <asp:BoundField DataField="oco_categoria" HeaderText="categoria" />
                             <asp:BoundField DataField="oco_status" HeaderText="status" />
                             <asp:TemplateField HeaderText="Detalhes">

@@ -12,9 +12,6 @@
                     <h4 class="mt-3 text-white font-weight-bolder">Ocorrências</h4>
                 </div>
 
-
-
-
                 <asp:Repeater ID="lblCard" runat="server">
                     <ItemTemplate>
                         <div class="col-4 mt-4">

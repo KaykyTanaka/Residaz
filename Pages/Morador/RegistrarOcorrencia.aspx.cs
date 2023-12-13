@@ -28,11 +28,10 @@ public partial class Pages_Morador_Ocorrencia : System.Web.UI.Page
 
     protected void btnCadastrar_Click(object sender, EventArgs e)
     {
-        if (txtTitulo.Text != "" && txtDescricao.Text != "")
+        if (ddCategoria.SelectedValue != "" && txtDescricao.Text != "")
         {
             Usuario usuario = (Usuario)Session["MORADOR"];
             Ocorrencia ocorrencia = new Ocorrencia();
-            ocorrencia.titulo = txtTitulo.Text;
             ocorrencia.descricao = txtDescricao.Text;
             ocorrencia.categoria = ddCategoria.SelectedValue;
             ocorrencia.data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
