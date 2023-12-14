@@ -19,5 +19,11 @@ public class Ocorrencia
     public int status { get; set; }
     public int mor_id { get; set; }
 
+    static string[] allcategorias = { "Barulhos", "Areas comuns", "Lixo", "Manutenções", "AVCB (Auto de Vistoria do Corpo de Bombeiros)", "Pessoas Externas", "Areas alugadas", "Segurança", "Obras do condominio", "Obras de moradores" };
+
+    public string[] ChamarCategorias()
+    {
+        return allcategorias;
+    }
 
 }
