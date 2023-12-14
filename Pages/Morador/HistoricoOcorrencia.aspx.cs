@@ -30,6 +30,34 @@ public partial class Pages_Morador_Historico : System.Web.UI.Page
             lblCard.DataBind();
         }
     }
+    protected string GetStatusText(int statusNumber)
+    {
+        switch (statusNumber)
+        {
+            case 0:
+                return "Pendente";
+            case 1:
+                return "Em Andamento";
+            case 2:
+                return "Solucionado";
+            default:
+                return "Desconhecido";
+        }
+    }
+    protected string CardCor(string status)
+    {
+        switch (status.ToLower())
+        {
+            case "0":
+                return "card-header bg-danger ";
+            case "1":
+                return "card-header bg-secondary ";
+            case "2":
+                return "card-header bg-success ";
+            default:
+                return "card-header"; // classe padrão
+        }
+    }
 
 
 }

@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+
 .background {
     background: linear-gradient(180deg, #0077B6 0%, #00B4B8 100%);
 }
@@ -16,15 +17,20 @@ body {
     src: url("../fonts/Lato-Light.ttf");
 }
 
+@font-face {
+    font-family: "Lato-regular";
+    src: url("../fonts/Lato-Regular.ttf");
+}
+
+.altera-ocorrencia {
+    font-family: "Lato-regular";
+    font-weight: 200;
+}
+
 .altera-fonte {
     font-family: "Lato";
     font-weight: 700;
     line-height: 20px;
-}
-
-.content-wrapper {
-    background-color: rgb(255, 0, 0) !important;
-    min-height: 100vh;
 }
 
 .altera-fonte-titulo {
@@ -39,6 +45,7 @@ body {
     width: 150px;
     height: 40px;
 }
+
 .erro {
     height: 400px;
     width: 500px;
@@ -47,13 +54,21 @@ body {
     background: #fff;
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
 }
-.triste{
-    width:150px;
-    height:150px;
+
+.triste {
+    width: 150px;
+    height: 150px;
 }
 
 .limite-caracteres {
-    max-width: 150px; /* Ajuste este valor conforme necessário */
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.limite-caracteres2 {
+    max-width: 190px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
