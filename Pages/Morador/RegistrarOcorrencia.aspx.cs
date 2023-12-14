@@ -15,11 +15,7 @@ public partial class Pages_Morador_Ocorrencia : System.Web.UI.Page
             if (Session["MORADOR"] != null)
             {
                 // Adiciona os itens à DropDownList apenas se a página não estiver sendo carregada por um postback
-                string[] allCategorias = new Ocorrencia().ChamarCategorias();
-                string[] categorias = allCategorias;
-                
-                
-
+                string[] categorias = { "Barulhos", "Areas comuns", "Lixo", "Manutenções", "AVCB (Auto de Vistoria do Corpo de Bombeiros)", "Pessoas Externas", "Areas alugadas", "Segurança", "Obras do condominio", "Obras de moradores" };
                 ddCategoria.Items.Insert(0, new ListItem("Selecione uma Categoria", ""));
                 foreach (string categoria in categorias)
                 {
@@ -41,13 +37,13 @@ public partial class Pages_Morador_Ocorrencia : System.Web.UI.Page
             ocorrencia.data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             ocorrencia.providencias = "Aguardando...";
             ocorrencia.mor_id = usuario.id;
-            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom Trabalho!', text: 'Ocorrência Cadastrado!', icon: 'success' });", true);
+
             OcorrenciasBD.InsertOcorrencia(ocorrencia);
         }
         else
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Preencha os campos corretamente!');", true);
         }
-        //Page.ClientScript.RegisterStartupScript(GetType(), "alerta", "alert('Ocorrencia Registrada com Sucesso!');", true);
+        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert2", "Swal.fire({ title: 'Bom Trabalho!', text: 'Ocorrência Cadastrado!', icon: 'success' });", true);
     }
 }

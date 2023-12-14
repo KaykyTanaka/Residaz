@@ -31,5 +31,37 @@ public partial class Pages_Morador_Historico : System.Web.UI.Page
         }
     }
 
+//Troca num do status por texto
+    protected string GetStatusText(int statusNumber)
+    {
+        switch (statusNumber)
+        {
+            case 0:
+                return "Pendente  <i class='fa-solid fa-triangle-exclamation'></i>";
+            case 1:
+                return "Em Andamento  <i class='fa-solid fa-clock'></i>";
+            case 2:
+                return "Solucionado  <i class='fa-solid fa-check'></i>";
+            default:
+                return "Desconhecido";
+        }
+    }
+
+//Troca cor do Card-Header
+    protected string CardCor(string status)
+    {
+        switch (status.ToLower())
+        {
+            case "0":
+                return "card-header bg-danger ";
+            case "1":
+                return "card-header bg-secondary ";
+            case "2":
+                return "card-header bg-success ";
+            default:
+                return "card-header";
+        }
+    }
+
 
 }
