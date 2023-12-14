@@ -19,12 +19,12 @@
 <body class="altera-fonte">
     <form id="form1" runat="server">
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed">
 
             <!-- Brand Logo -->
-            <a href="#" class="brand-link">
+            <a href="#" class="brand-link text-decoration-none">
                 <img src="../../Assets/images/Logo-Cor-Nova.png" alt="Residaz Logo" class="brand-image" style="opacity: .8">
-                <span class="brand-text text-white font-weight-bold text-decoration-none">Residaz</span>
+                <span class="brand-text text-white font-weight-bold">Residaz</span>
             </a>
 
             <!-- Sidebar -->
@@ -83,7 +83,7 @@
         <script src="../../Assets/js/modal.js"></script>
         <script src="../../Assets/plugins/jquery/jquery.min.js"></script>
         <script src="../../Assets/js/adminlte/adminlte.min.js"></script>
-        <script src="../../Assets/plugins/fontawesome-free/6cc992ba61.js"></script>
+        <script src="https://kit.fontawesome.com/6cc992ba61.js" crossorigin="anonymous"></script>
         <script src="../../Assets/plugins/sweetalert2/sweetalert2.min.js"></script>
         <asp:ContentPlaceHolder ID="body" runat="server">
         </asp:ContentPlaceHolder>

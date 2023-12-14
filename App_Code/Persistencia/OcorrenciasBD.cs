@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using ZstdSharp.Unsafe;
 
 /// <summary>
 /// Descrição resumida de OcorrenciasBD
@@ -96,7 +97,7 @@ public class OcorrenciasBD
             IDbConnection conn = ConexaoBD.Conexao();
             string sql = "UPDATE OCO_OCORRENCIA SET OCO_PROVIDENCIAS=?PROVIDENCIAS WHERE OCO_ID = ?ID ";
             IDbCommand cmd = ConexaoBD.Comando(sql, conn);
-            cmd.Parameters.Add(ConexaoBD.Parametro("?PROVIDENCIAS", providencias));;
+            cmd.Parameters.Add(ConexaoBD.Parametro("?PROVIDENCIAS", providencias)); ;
             cmd.Parameters.Add(ConexaoBD.Parametro("?ID", id));
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -160,18 +161,67 @@ public class OcorrenciasBD
         }
         return error;
     }
+
+
+    public static string[] ObterCategorias()
+    {
+        var allCategorias = new Ocorrencia().ChamarCategorias();
+        return allCategorias;
+    }
+
+
     public static List<int> ObterDados()
     {
         // Simula a obtenção de dados do banco de dados
+
         Random random = new Random();
         List<int> dados = new List<int>();
+        var allCategorias = ObterCategorias();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < allCategorias.Length; i++)
         {
-            dados.Add(random.Next(1, 100));
+            IDbConnection conn = ConexaoBD.Conexao();
+            IDataReader dr;
+            string sql = "select COUNT(oco_id) as QuantidadeCategoria from oco_ocorrencia where oco_categoria = ?categoria";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            cmd.Parameters.Add(ConexaoBD.Parametro("?categoria", allCategorias[i]));
+            dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                dados.Add(Convert.ToInt32(dr["QuantidadeCategoria"].ToString()));
+            }
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
         }
 
+
         return dados;
+    }
+
+    public static int QuantidadeOcorrencia()
+    {
+        // Simula a obtenção de dados do banco de dados
+        int quantidade = 0;
+        try {
+            IDbConnection conn = ConexaoBD.Conexao();
+            IDataReader dr;
+            string sql = "select COUNT(oco_id) as QuantidadeCategoria from oco_ocorrencia";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                quantidade = Convert.ToInt32(dr["QuantidadeCategoria"].ToString());
+            }
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            quantidade = -2;
+        }
+        return quantidade;
     }
 
 }

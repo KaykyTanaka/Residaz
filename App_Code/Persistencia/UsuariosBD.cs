@@ -327,5 +327,30 @@ from pes_pessoas inner join usu_usuarios u using(pes_id) inner join por_porteiro
         }
         return retorno;
     }
+    public static int QuantidadeMorador()
+    {
+        // Simula a obtenção de dados do banco de dados
+        int quantidade = 0;
+        try
+        {
+            IDbConnection conn = ConexaoBD.Conexao();
+            IDataReader dr;
+            string sql = "select COUNT(mor_id) as QuantidadeMorador from mor_morador";
+            IDbCommand cmd = ConexaoBD.Comando(sql, conn);
+            dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                quantidade = Convert.ToInt32(dr["QuantidadeMorador"].ToString());
+            }
+            conn.Close();
+            conn.Dispose();
+            cmd.Dispose();
+        }
+        catch (Exception ex)
+        {
+            quantidade = -2;
+        }
+        return quantidade;
+    }
 
 }
