@@ -29,8 +29,8 @@
                                 </div>
 
                                 <div class="card-body descricao">
-                                    <p class="fw-bold">Status: <span class="fw-normal"><%# GetStatusText(Convert.ToInt32(Eval("oco_status"))) %></span></p>
-                                    <p class="fw-bold limite-caracteres2">Descrição: <span class="fw-normal"><%# Eval("oco_descricao") %></span></p>
+                                    <p class="fw-bold">Status:   <span class="fw-normal"><%# GetStatusText(Convert.ToInt32(Eval("oco_status"))) %></span></p>
+                                    <p class="fw-bold limite-caracteres2">Descrição:   <span class="fw-normal"><%# Eval("oco_descricao") %></span></p>
 
                                     <br>
                                     <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target='<%# "#modalVisualizar_" + Eval("oco_id") %>'>

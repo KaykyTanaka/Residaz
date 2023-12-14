@@ -30,20 +30,24 @@ public partial class Pages_Morador_Historico : System.Web.UI.Page
             lblCard.DataBind();
         }
     }
+
+//Troca num do status por texto
     protected string GetStatusText(int statusNumber)
     {
         switch (statusNumber)
         {
             case 0:
-                return "Pendente";
+                return "Pendente  <i class='fa-solid fa-triangle-exclamation'></i>";
             case 1:
-                return "Em Andamento";
+                return "Em Andamento  <i class='fa-solid fa-clock'></i>";
             case 2:
-                return "Solucionado";
+                return "Solucionado  <i class='fa-solid fa-check'></i>";
             default:
                 return "Desconhecido";
         }
     }
+
+//Troca cor do Card-Header
     protected string CardCor(string status)
     {
         switch (status.ToLower())
@@ -55,7 +59,7 @@ public partial class Pages_Morador_Historico : System.Web.UI.Page
             case "2":
                 return "card-header bg-success ";
             default:
-                return "card-header"; // classe padrão
+                return "card-header";
         }
     }
 
